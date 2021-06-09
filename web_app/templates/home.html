@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="../static/css/templatemo_style.css" type="text/css" rel="stylesheet" /> 
+<script type="text/javascript" src="../static/js/jquery.min.js"></script> 
+<script type="text/javascript" src="../static/js/jquery.scrollTo-min.js"></script> 
+<script type="text/javascript" src="../static/js/jquery.localscroll-min.js"></script> 
+<script type="text/javascript" src="../static/js/init.js"></script> 
+    
+<link rel="stylesheet" href="../static/css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="../static/js/slimbox2.js"></script> 
+</head> 
+<body> 
+<div id="templatemo_header_wrapper">
+	<div id="templatemo_header">
+    	<h1><a href="https://shop.migros.ch/">Migros Online</a></h1>
+    </div>
+</div>
+
+<div style="text-align: center">
+	<h2>Your recommendations</h3>
+</div>
+<div id="templatemo_main_wrapper">
+	<div id="templatemo_main">
+		<div id="content"> 
+            <div id="home" class="section">
+				<ul id="templatemo_menu">
+                {% for product in products %}
+                <li><a href="https://shop.migros.ch/en/search?query={{product}}" target="_blank">
+                    
+                    <img class="myimg" aria-hidden="true" sizes="100px" alt="Buy online" data-alt="Buy online" srcset="https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_160,h_137,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 160w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_200,h_171,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 200w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_300,h_257,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 300w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_320,h_274,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 320w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_400,h_342,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 400w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_600,h_513,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 600w, https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_800,h_684,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}} 800w" src="https://www-leshop-ch-cld-res.cloudinary.com/image/upload/w_200,h_171,d_mo-default-product.png,c_fit,,,fl_lossy,b_rgb:fff/f_auto/e_unsharp_mask:100/q_auto/v20210609/prod/catalog/product/product-{{product}}" style="transform: scale(0.830954);">
+                    
+                    <span style="padding: 10px;">{{product}}</span>
+                
+                </a>
+                </li>
+                {% endfor %}            
+                </ul>
+            </div> 
+        </div> 
+    </div>
+	
+</div>
+
+<div id="templatemo_footer_wrapper">
+	<div id="templatemo_footer">
+    	<p>Copyright © 2021 Norbert Eke</p>
+    </div>
+</div>
+<script>
+    window.onload = add;
+    function add(){
+        console.log("Adding " + products.length + " products");
+   const cont = document.getElementById('home');
+
+    // create ul element and set its attributes.
+    const ul = document.createElement('ul');
+    // ul.setAttribute ('style', 'padding: 0; margin: 0;');
+    ul.setAttribute('id', 'templatemo_menu');
+
+    for (i = 0; i <= products.length - 1; i++) {
+        const li = document.createElement('li');    // create li element.
+        
+        li.innerHTML = arr[i];                          // assigning text to li using array value.
+        li.setAttribute ('style', 'display: block;');   // remove the bullets.
+
+        ul.appendChild(li);     // append li to ul.
+    }
+    cont.appendChild(ul);       // add ul to the container.
+}
+</script>
+</script>
+</body> 
+</html>

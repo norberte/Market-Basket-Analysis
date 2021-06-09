@@ -87,16 +87,21 @@ def get_shoppingList(df, person_id):
 
 def get_recommendations(person_id, df, rules_lookup):
     products_to_recommend = []
-
+    
     items_bought = get_shoppingList(df, person_id)
-
+    
     for i in items_bought:
-        recommendations = rules_lookup[int_to_frozenset(i)]
-        recommendations = strList_to_intList(recommendations)
-        products_to_recommend = products_to_recommend + recommendations
-
+        if int_to_frozenset(i) in rules_lookup:
+            recommendations = rules_lookup[int_to_frozenset(i)]
+            recommendations = strList_to_intList(recommendations)
+            products_to_recommend = products_to_recommend + recommendations
+    
     final_recommendations = [item for item in products_to_recommend if item not in items_bought]
-    return final_recommendations
+    
+    if len(final_recommendations) == 0:
+        final_recommendations = items_bought
+        
+    return list(set(final_recommendations))
 
 
 def main(person_id):
@@ -115,12 +120,11 @@ def main(person_id):
     rules_lookup = get_rules_look_up(rules)
 
     results = get_recommendations(person_id, df, rules_lookup)
-
+	
     return results
 
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def home():
@@ -132,7 +136,7 @@ def predict():
     input_data = [x for x in request.form.values()]
     results = main(input_data[0])
 
-    return render_template('home.html', pred='Expected Bill will be {}'.format(results))
+    return render_template('home.html', products=results)
 
 @app.route('/predict_api', methods=['POST'])
 def predict_api():

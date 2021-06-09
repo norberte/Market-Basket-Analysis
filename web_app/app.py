@@ -105,7 +105,7 @@ def get_recommendations(person_id, df, rules_lookup):
 
 
 def main(person_id):
-    filepath = '../interview_case_study.csv'
+    filepath = './interview_case_study.csv'
 
     # import data and pre-process it
     df = import_and_process_data(filepath)
